@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepMobile", "RepMobile.csproj", "{921BCD67-6815-4E5C-AE07-BCB3839D17C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{921BCD67-6815-4E5C-AE07-BCB3839D17C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{921BCD67-6815-4E5C-AE07-BCB3839D17C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{921BCD67-6815-4E5C-AE07-BCB3839D17C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{921BCD67-6815-4E5C-AE07-BCB3839D17C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{921BCD67-6815-4E5C-AE07-BCB3839D17C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{921BCD67-6815-4E5C-AE07-BCB3839D17C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4DBCA9DB-C8A9-46C5-9F18-1FE31CC869B4}
+	EndGlobalSection
+EndGlobal

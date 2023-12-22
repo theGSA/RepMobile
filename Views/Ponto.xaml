@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RepMobile.Views.Ponto"
+             xmlns:local="clr-namespace:RepMobile.Views"
+             Title="Resgistro de Ponto"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             >
+    <Grid RowDefinitions="auto,auto,*">
+        <VerticalStackLayout Spacing="2" >
+            <Border Margin="10, 5"
+                    Stroke="Transparent"
+                    BackgroundColor="Transparent">
+                <Button Text="G" 
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        FontSize="25"
+                        VerticalOptions="Center"
+                        CornerRadius="25"
+                        HorizontalOptions="End"/>
+            </Border>
+            <HorizontalStackLayout Spacing="20" Padding="15">
+                <Label
+                    Text="&lt;"
+                    TextColor="Black"
+                    ScaleY="1" ScaleX="0.6"
+                    VerticalOptions="Center"
+                    />
+                <Label 
+                     FontSize="30"
+                    Text="Meu Ponto"
+                    TextColor="Black"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+
+
+            <!--prriodo-->
+            <Border Margin="5, 0, 5,0"
+                Padding="0"
+                StrokeShape="RoundRectangle 2"
+                    BackgroundColor="Transparent"
+                    >
+
+                <VerticalStackLayout
+                    Spacing="5"
+                    Margin="15,0,15,0">
+                    <Label 
+                        Text="Período"
+                        FontAttributes="Bold"
+                        Padding="0, 10, 0,0"/>
+
+                    <Picker
+                            x:Name="PickerDoCapiroto"
+                            HorizontalOptions="Start"
+                            SelectedIndexChanged="PickerDoCapiroto_SelectedIndexChanged"
+                            SelectedIndex="0"
+                            WidthRequest="300"
+                            BackgroundColor="Transparent">
+                    </Picker>
+                    <!--Saldos-->
+                    <Grid ColumnDefinitions="*,*,*"
+                          RowDefinitions="auto, auto, auto"
+                          Margin="5, 0, 5, 0">
+                        <Label HorizontalOptions="Center" Grid.Row="0" Text="Saldo Anterior"/>
+                        <!--<Label HorizontalOptions="Center" Grid.Row="1" Text="Anterior"/>-->
+                        <Label HorizontalOptions="Center"
+                               Style="{StaticResource HorasStyle}"
+                               Grid.Row="2"
+                               Text="+00:00"/>
+
+                        <Label HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" Text="Saldo Periodo"/>
+                        <!--<Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="1" Text="Anterior"/>-->
+                        <Label HorizontalOptions="Center"
+                               Grid.Row="2"
+                               Grid.Column="1"
+                               Text="+00:00"
+                               Style="{StaticResource HorasStyle}"
+                               />
+
+                        <Label HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" Text="Total Banco"/>
+                        <!--<Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="2" Text="Anterior"/>-->
+                        <Label HorizontalOptions="Center" Grid.Row="2" Grid.Column="2" Text="-00:00"
+                               Style="{StaticResource HorasStyle}"/>
+
+                    </Grid>
+
+                    <!--<Line BackgroundColor=" CadetBlue" StrokeThickness="2"/>-->
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+        <VerticalStackLayout Spacing="2" Grid.Row="1"
+                              >
+
+            <!--prriodo-->
+            <Border Margin="5, 0, 5,0"
+                 Padding="0"
+                 StrokeShape="RoundRectangle 2"
+                 BackgroundColor="Transparent">
+
+                <VerticalStackLayout
+                     
+                     Margin="15,0,15,0">
+
+
+                    <Label Text="Resumo do Período" HorizontalOptions="Center"/>
+                    <Grid ColumnDefinitions="*, *, *, *" Margin="5,5,5,0" Padding="0">
+                        <Label Padding="5, 0, 5,0" VerticalOptions="End"  HorizontalOptions="Fill" Text="Data"/>
+                        <Label HorizontalOptions="Fill" HorizontalTextAlignment="Center" Grid.Column="1" Text="Entradas"/>
+                        <Label HorizontalOptions="Fill" HorizontalTextAlignment="Center" Grid.Column="2" Text="Saídas"/>
+                        <Label Padding="5, 0, 5, 0" HorizontalOptions="Fill" HorizontalTextAlignment="End" Grid.Column="3" Text="Ação"/>
+                    </Grid>
+
+                    <Line BackgroundColor="Gray" StrokeThickness="2"/>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+
+        <ContentView 
+            Grid.Row="2"
+            Margin="6, 0, 6,6"
+            BackgroundColor="Transparent"
+            >
+            <CollectionView x:Name="LisViewPontos"
+                        Margin="25, 1, 25,1"
+                        BackgroundColor="Transparent">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border 
+                        Stroke="Transparent"
+                        BackgroundColor="Transparent">
+                            <Grid ColumnDefinitions="*, *, *, *">
+                                <Label Grid.Column="0" HorizontalOptions="Fill" Padding="5" VerticalOptions="Center" Text="{Binding Data, StringFormat='{0:dd/MM}\&#xA;{0:ddd}'}" TextColor="Red"/>
+                                <CollectionView HorizontalOptions="Fill" Grid.Column="1" ItemsSource="{Binding Entradas}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate >
+                                            <Grid  ColumnDefinitions="*" HorizontalOptions="Fill">
+                                                <HorizontalStackLayout HorizontalOptions="Center">
+                                                    <Label Text="{Binding Date, StringFormat='{0:HH:mm}'}" HorizontalOptions="Center" TextColor="Green"/>
+                                                    <Label Text="{Binding LkpTipo}" TextColor="Gray" Grid.Column="1" FontSize="10" VerticalOptions="End"/>
+                                                </HorizontalStackLayout>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+
+                                <CollectionView HorizontalOptions="Fill" MinimumHeightRequest="5" Grid.Column="2" ItemsSource="{Binding Saidas}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid HorizontalOptions="Fill" ColumnDefinitions="*">
+                                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="2">
+                                                    <Label HorizontalTextAlignment="Center" Text="{Binding Date, StringFormat='{0:HH:mm}'}" MinimumHeightRequest="5" TextColor="Green"/>
+                                                    <Label Text="{Binding LkpTipo}" TextColor="Gray" FontSize="10" VerticalOptions="End"/>
+                                                </HorizontalStackLayout>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <Label Text="..."  FontSize="30" HorizontalOptions="Fill" Padding="5" HeightRequest="1"/>
+                                <Line HeightRequest="1" Grid.ColumnSpan="4" BackgroundColor="Gray" VerticalOptions="End" />
+                            </Grid>
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ContentView>
+
+    </Grid>
+</ContentPage>
